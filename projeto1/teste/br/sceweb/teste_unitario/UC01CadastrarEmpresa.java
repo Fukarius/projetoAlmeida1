@@ -10,6 +10,11 @@ import org.junit.Test;
 import br.sceweb.model.Empresa;
 import br.sceweb.model.EmpresaDAO;
 
+/**
+ * Classe de casos de teste do cadastro de Empresas
+ * @author Lab103
+ * @version 1
+ */
 public class UC01CadastrarEmpresa {
 	static EmpresaDAO empresaDAO;
 	static Empresa empresa;
@@ -23,9 +28,26 @@ public class UC01CadastrarEmpresa {
 		empresa.setEndereco("rua taquari");
 		empresa.setTelefone("2222");
 	}
+	/**
+	 * CT01UC01FBCadastra_com_sucesso
+	 * Objetivo - verificar o comportamento do sistema para o cadastro de empresas
+	 * com sucesso
+	 */
+	@Ignore
 	@Test
 	public void CT01UC01FBCadastra_com_sucesso() {
 		assertEquals(1,empresaDAO.adiciona(empresa));
+	}
+	
+	@Test
+	public void CT02UC01FBCadastra_com_cnpj_invalido() {
+		assertEquals("CNPJ invalido.",empresa.setCnpj("89424987"));
+	}
+	
+	@Test
+	public void CT03UC01FBCadastra_com_cnpj_ja_cadastrado() {
+		empresaDAO.adiciona(empresa);
+		assertEquals(0,empresaDAO.adiciona(empresa));
 	}
 	
 	@AfterClass

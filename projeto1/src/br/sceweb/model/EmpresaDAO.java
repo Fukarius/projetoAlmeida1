@@ -5,6 +5,11 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import br.sceweb.servico.FabricaDeConexoes;
 
+/**
+ * Manter a integração com o banco de dados MySQL
+ * @author Lab103
+ * @version 1
+ */
 public class EmpresaDAO {
 
 	public int adiciona(Empresa empresa){
@@ -22,7 +27,8 @@ public class EmpresaDAO {
 			ps.close();
 				
 			} catch (SQLException e){
-				throw new RuntimeException(e);
+				System.out.println("erro = " + e.getMessage());
+				//throw new RuntimeException(e);
 			}
 		return codigoRetorno;
 	}
